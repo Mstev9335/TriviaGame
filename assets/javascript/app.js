@@ -27,8 +27,9 @@ $(document).ready(function () {
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
-
-    
+    var count = 5;
+    var intervalId;
+    var timeRun = false;
 
     // index used to choose question
     var index;
@@ -38,26 +39,38 @@ $(document).ready(function () {
     // number of questions in game
     var numQuestions = questions.length;
 
-    // timer
-    var myTimer = setInterval(timer, 1000);
-    var count = 5;
-    function timer() {
-        count--;
-        // console.log(count);
-        $('#time-remaining').text(count);
+    $("#start").on("click", function () {
+        $("#start").hide();
+        runTimer();
+    })
 
-        // clears timer if it gets to 0
-        if(count===0){
-            clearInterval(myTimer);
-
-            // clear out previous choices
-           
-            $("#answers").empty();
-            displayQuestions();
+    
+     //timer start
+     function runTimer(){
+        if (!timeRun) {
+        intervalId = setInterval(decrement, 1000); 
+        timeRun = true;
         }
-      }
+    }
+   
+    // timer stop
+    function stopTimer(){
+        timeRun = false;
+        clearInterval(intervalId);
+    }
 
-
+    // timer countdown
+    function decrement() {
+        $("#time-remaining").html(count);
+        count --;
+    
+        //stop timer if reach 0
+        if (count === 0) {
+            stopTimer();
+            unanswered++;
+           
+        }	
+    }
 
 
 
@@ -66,7 +79,6 @@ $(document).ready(function () {
     function displayQuestions(){
         index = questions[Math.floor(Math.random()*questions.length)];
         console.log(index.question);
-
         // display question
         $('#questions').html(index.question);
 
@@ -88,10 +100,14 @@ $(document).ready(function () {
             if(userGuess===index.answer){
                 console.log("correct");
                 correct++;
+                stopTimer();
+                $("#answers").html("<p>Correct!</p>");
             }
             else{
                 console.log("wrong");
                 incorrect++;
+                stopTimer();
+                $("#answers").html("<p>Incorrect!</p>" +"the correct answer is: "+ index.choice[index.answer] );
             }
         })  
  }
