@@ -4,63 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- linking bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <!-- Linking Style Sheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Trivia Game</title>
 </head>
 <body>
-  <h1>Trivia Game</h1>  
-
-  <!-- time remaining -->
-  <h2>Time Remaining: <span id="time"></span></h2>
-
-  <!--     questions section     -->
-
-  <h2>Multiple choice question 1: <span id="multi1"></span></h2>
-  <input type="radio" name="rbnNumber1" value="1" /> Number 1
-<input type="radio" name="rbnNumber1" value="2" /> Number 2 
-<input type="radio" name="rbnNumber1" value="3" /> Number 3
-<input type="radio" name="rbnNumber1" value="3" /> Number 4
-
-
-  <h2>Multiple choice question 2: <span id="multi2"></span></h2>
-  <input type="radio" name="rbnNumber2" value="1" /> Number 1
-  <input type="radio" name="rbnNumber2" value="2" /> Number 2
-  <input type="radio" name="rbnNumber2" value="3" /> Number 3
-  <input type="radio" name="rbnNumber2" value="3" /> Number 4
-
-
-  <h2>Multiple choice question 3: <span id="multi3"></span></h2>
-  <input type="radio" name="rbnNumber3" value="1" /> Number 1
-  <input type="radio" name="rbnNumber3" value="2" /> Number 2 
-  <input type="radio" name="rbnNumber3" value="3" /> Number 3
-  <input type="radio" name="rbnNumber3" value="3" /> Number 4
- 
-
-  <h2>Multiple choice question 4: <span id="multi4"></span></h2>
-  <input type="radio" name="rbnNumber4" value="1" /> Number 1
-  <input type="radio" name="rbnNumber4" value="2" /> Number 2 
-  <input type="radio" name="rbnNumber4" value="3" /> Number 3
-  <input type="radio" name="rbnNumber4" value="3" /> Number 4
- 
-
-  <h2>Multiple choice question 5: <span id="multi5"></span></h2>
-  <input type="radio" name="rbnNumber5" value="1" /> Number 1
-  <input type="radio" name="rbnNumber5" value="2" /> Number 2 
-  <input type="radio" name="rbnNumber5" value="3" /> Number 3
-  <input type="radio" name="rbnNumber5" value="3" /> Number 4
-
-<!--      questions section end -->
-
-
-<!-- results section -->
-
-<h3>Answered Correctly: <span id="correct"></span></h3>
-
-<h3>Answered Incorrectly: <span id="incorrect"></span></h3>
-
-
-<!-- results section ends -->
+  <h1>Trivia</h1>
+<div class="wrapper">	
+  Time Remaining:	<span id= "time-remaining"> </span>
+	<div id= "questions"></div>
+	<div id= "answers"></div>
+	<button class ="btn btn-success" id ="start">Start Game</button><br>
+	<button class="btn btn-success" id="reset">Play Again?</button>
+</div>
 
 
 
