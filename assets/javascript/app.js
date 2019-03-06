@@ -28,6 +28,8 @@ $(document).ready(function () {
     var incorrect = 0;
     var unanswered = 0;
 
+    
+
     // index used to choose question
     var index;
 
@@ -38,7 +40,7 @@ $(document).ready(function () {
 
     // timer
     var myTimer = setInterval(timer, 1000);
-    var count = 10;
+    var count = 5;
     function timer() {
         count--;
         // console.log(count);
@@ -47,8 +49,17 @@ $(document).ready(function () {
         // clears timer if it gets to 0
         if(count===0){
             clearInterval(myTimer);
+
+            // clear out previous choices
+           
+            $("#answers").empty();
+            displayQuestions();
         }
       }
+
+
+
+
 
 
     //   display questions
@@ -99,11 +110,6 @@ $(document).ready(function () {
                 unanswered = 0;
             }
     }
-
-
-    
-    //   have user select an option and compare it to the answer
-
 
 
     //   choose next question 
