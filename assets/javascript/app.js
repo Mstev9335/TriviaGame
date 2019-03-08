@@ -8,7 +8,7 @@ var count = 5;
 var timeRun = false;
 var correct=0;
 var incorrect=0;
-var unanswered=0;
+
 var intervalId;
 var currentQuestion=0;
 
@@ -74,9 +74,9 @@ function stopTimer() {
 
 // timer countdown
 function countdown() {
-    $("#counter-number").html(count);
     count--;
-
+    $("#counter-number").html(count);
+  
     //stop timer if reach 0
     if (count === 0) {
         timeUp();
@@ -111,9 +111,9 @@ function timeUp(){
     panel.append('<h3>The Correct Answer was: ' + questions[currentQuestion].correctAnswer);
     
     if (currentQuestion === questions.length - 1){
-      setTimeout(results, 3 * 1000);
+      setTimeout(results,  3000);
     } else {
-      setTimeout(nextQuestion, 3 * 1000);
+      setTimeout(nextQuestion, 3000);
     }
   }
 
@@ -124,9 +124,9 @@ function answeredCorrectly(){
     panel.html('<h2>Correct!</h2>');
     
     if (currentQuestion === questions.length - 1){
-      setTimeout(results, 3 * 1000);
+      setTimeout(results, 3000);
     } else {
-      setTimeout(nextQuestion, 3 * 1000);
+      setTimeout(nextQuestion, 3000);
     }
   }
 
@@ -138,9 +138,9 @@ function answeredCorrectly(){
     panel.append('<h3>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h3>');
     
     if (currentQuestion === questions.length - 1){
-      setTimeout(results, 3 * 1000);
+      setTimeout(results, 3000);
     } else {
-      setTimeout(nextQuestion, 3 * 1000);
+      setTimeout(nextQuestion, 3000);
     }
 }
 
