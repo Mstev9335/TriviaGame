@@ -1,174 +1,180 @@
+
 $(document).ready(function () {
-
-
-    //questions
-    var questions = [
-        {
-            question: "what is 3 + 3?",
-            choice: ["2", "3", "6"],
-            answer: 2
-        },
-        {
-            question: "what is 15 + 2?",
-            choice: ["2", "3", "17", "4"],
-            answer: 2
-        },
-        {
-            question: "what color is the sky?",
-            choice: ["blue", "orange", "yellow"],
-            answer: 0
-        },
-        {
-            question: "what color is grass?",
-            choice: ["blue", "green", "red"],
-            answer: 1
-        },
-        {
-            question: "what does a cow say?",
-            choice: ["honk", "baa", "moo"],
-            answer: 2
-        }
-
-    ];
-
-    // stats
-    var correct = 0;
-    var incorrect = 0;
-    var unanswered = 0;
-    var count = 5;
-    var intervalId;
-    var timeRun = false;
-
-    // index used to choose question
-    var index;
-
-    var usedQuestions = [];
    
 
-    var userChoice;
+// variables
+var panel = $('#questions');
+var count = 5;
+var timeRun = false;
+var correct=0;
+var incorrect=0;
+var unanswered=0;
+var intervalId;
+var currentQuestion=0;
 
-    // number of questions in game
-    var numQuestions = questions.length;
+// buttons
+$(document).on('click', '#reset-game', function(e) {
+    reset();
+  });
+  
+  $(document).on('click', '.answer-button', function(e) {
+    clicked(e);
+  });
+  
+  $(document).on('click', '#start', function(e) {
+      $('#start').hide();
+    $('#time-remaining').prepend('<h2>Time Remaining: <span id="counter-number">5</span> Seconds</h2>');
+    displayQuestion();
+  });
+  
 
-    // start the game on button click
-    $("#start").on("click", function () {
-        $("#start").hide();
-        displayQuestions();
-        runTimer();
-     
-    })
+//   questions
+var questions = [{
+    question: "What color is the sky?",
+    choice: ["green", "blue", "yellow", "red"],
+    correctAnswer: "blue"
+  }, {
+    question: "How many days are in the month of February?",
+    choice: ["thirty", "thirty-one", "twenty-nine", "twenty-eight"],
+    correctAnswer: "twenty-eight"
+  }, {
+    question: "What is the largest planet in our solar system?",
+    choice: ["pluot", "saturn", "jupiter", "earth"],
+    correctAnswer: "jupiter"
+  }, {
+    question: 'What is the tallest land mammal"?',
+    choice: ["giraffe", "elephant", "gorilla", "bear"],
+    correctAnswer: "giraffe"
+  }, {
+    question: 'What country does King Arthur hail from?',
+    choice: ["France", "England", "Spain", "Rome"],
+    correctAnswer: "England"
+  }, {
+    question: 'What does air primarily consist of?',
+     choice: ["Helium", "Oxygen", "Nitrogen", "Hydrogen"],
+    correctAnswer: "Nitrogen"
+ 
+  }];
 
 
-    //timer start
-    function runTimer() {
-        if (!timeRun) {
-            intervalId = setInterval(decrement, 1000);
-            timeRun = true;
-        }
+  //timer start
+  function runTimer() {
+    if (!timeRun) {
+        intervalId = setInterval(countdown, 1000);
+        timeRun = true;
     }
+}
 
-    // timer stop
-    function stopTimer() {
-        timeRun = false;
-        clearInterval(intervalId);
+// timer stop
+function stopTimer() {
+    timeRun = false;
+    clearInterval(intervalId);
+   
+}
+
+// timer countdown
+function countdown() {
+    $("#counter-number").html(count);
+    count--;
+
+    //stop timer if reach 0
+    if (count === 0) {
+        timeUp();
     }
+}
 
-    // timer countdown
-    function decrement() {
+// displays the questions
+function displayQuestion(){
+    runTimer();
+    $("#questions").html('<h2>' + questions[currentQuestion].question + '</h2>' );
+    for (var i = 0; i<questions[currentQuestion].choice.length; i++){
+    panel.append('<button class="answer-button" id="button"' + 'data-name="' + questions[currentQuestion].choice[i] +
+     '">' + questions[currentQuestion].choice[i]+ '</button>');
+      }
+}
 
-        $("#time-remaining").html("Time Remaining: " + count);
-        count--;
+// increments through the all the questions
+function nextQuestion(){
+     count=5;
+     $('#counter-number').html(count);
+    currentQuestion++;
+    runTimer();
+    displayQuestion();
 
-        //stop timer if reach 0
-        if (count === 0) {
-            stopTimer();
-            unanswered++;
-            $("#answers").html("<p>Time is up</p>");
-            nextQuestion();
-            displayQuestions();
+}
 
-        }
+// if the timer reaches 0 on a question
+function timeUp(){
+    stopTimer();
+    $('#counter-number').html(count);
+    panel.html('<h2>Time is up</h2>');
+    panel.append('<h3>The Correct Answer was: ' + questions[currentQuestion].correctAnswer);
+    
+    if (currentQuestion === questions.length - 1){
+      setTimeout(results, 3 * 1000);
+    } else {
+      setTimeout(nextQuestion, 3 * 1000);
     }
+  }
 
-
-
-
-    //   display questions
-    function displayQuestions() {
-        index = questions[Math.floor(Math.random() * questions.length)];
-        console.log(index.question);
-
-        // ------------------
-        stopTimer();
-        count = 5;
-        runTimer();
-        // ------------------
-
-        // display question
-        $('#questions').html(index.question);
-        // display choices
-        for (var i = 0; i < index.choice.length; i++) {
-            var userChoice = $("<div>");
-            userChoice.addClass("answerChoice");
-            userChoice.html(index.choice[i]);
-            //assign array position to it so can check answer
-            userChoice.attr("data-guessValue", i);
-            $("#answers").append(userChoice);
-
-
-        }
-
-
-        $('.answerChoice').on('click', function () {
-            userGuess = parseInt($(this).attr("data-guessValue"));
-
-            // compare userGuess to the correct answer
-            if (userGuess === index.answer) {
-                console.log("correct");
-                correct++;
-                stopTimer();
-                $("#answers").html("<p>Correct!</p>");
-                nextQuestion();
-                displayQuestions();
-            }
-            else {
-                console.log("wrong");
-                incorrect++;
-                stopTimer();
-                $("#answers").html("<p>Incorrect!</p>" + "the correct answer is: " + index.choice[index.answer]);
-                nextQuestion();
-
-                displayQuestions();
-
-            }
-        })
+//   if the user chose the correct answer
+function answeredCorrectly(){
+   stopTimer();
+    correct++;
+    panel.html('<h2>Correct!</h2>');
+    
+    if (currentQuestion === questions.length - 1){
+      setTimeout(results, 3 * 1000);
+    } else {
+      setTimeout(nextQuestion, 3 * 1000);
     }
-    // displayQuestions();
+  }
 
-    // choose next question
-    function nextQuestion() {
-
-        // eliminate question that was already used
-        questions.splice(index, 1);
-
-
-
-        // display results
-        if ((correct + incorrect + unanswered) === numQuestions) {
-            $("#questions").empty();
-            $("#questions").html("<h3>Time's Up - Results: </h3>");
-            $("#answers").append("<h4> Correct: " + correct + "</h4>");
-            $("#answers").append("<h4> Incorrect: " + incorrect + "</h4>");
-            $("#answers").append("<h4> Unanswered: " + unanswered + "</h4>");
-            $("#reset").show();
-            correct = 0;
-            incorrect = 0;
-            unanswered = 0;
-        }
-
+//   if the user chose an incorrect answer
+  function answeredIncorrectly() {
+    stopTimer();
+    incorrect++;
+    panel.html('<h2>incorrect</h2>');
+    panel.append('<h3>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h3>');
+    
+    if (currentQuestion === questions.length - 1){
+      setTimeout(results, 3 * 1000);
+    } else {
+      setTimeout(nextQuestion, 3 * 1000);
     }
+}
 
+// checks the user's choice against the correct answer
+function clicked(e) {
+    stopTimer();
 
+    if ($(e.target).data("name") === questions[currentQuestion].correctAnswer){
+      answeredCorrectly();
+    } else {
+      answeredIncorrectly();
+    }
+  }
 
+//   displays the results
+  function results() {
+    stopTimer();
+    $('#counter-number').html(count);
+    panel.html('<h2>Results:</h2>');
+    
+    panel.append('<h3>Correct Answers: ' + correct + '</h3>');
+    panel.append('<h3>Incorrect Answers: ' + incorrect + '</h3>');
+    panel.append('<h3>Unanswered: ' + (questions.length - (incorrect + correct)) + '</h3>');
+    panel.append('<br><button id="reset-game">Play again?</button>');
+  }
+
+//   resets the game
+  function reset(){
+    currentQuestion = 0;
+    counter = 5;
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+    displayQuestion();
+  }
 
 });
