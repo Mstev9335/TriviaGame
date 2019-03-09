@@ -107,8 +107,8 @@ function nextQuestion(){
 function timeUp(){
     stopTimer();
     $('#counter-number').html(count);
-    panel.html('<h2>Time is up</h2>');
-    panel.append('<h3>The Correct Answer was: ' + questions[currentQuestion].correctAnswer);
+    panel.html('<h3>Time is up</h3>');
+    panel.append('<h4>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h4>');
     
     if (currentQuestion === questions.length - 1){
       setTimeout(results,  3000);
@@ -134,8 +134,8 @@ function answeredCorrectly(){
   function answeredIncorrectly() {
     stopTimer();
     incorrect++;
-    panel.html('<h2>incorrect</h2>');
-    panel.append('<h3>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h3>');
+    panel.html('<h3>incorrect</h3>');
+    panel.append('<h4>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h4>');
     
     if (currentQuestion === questions.length - 1){
       setTimeout(results, 3000);

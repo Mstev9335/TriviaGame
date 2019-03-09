@@ -7,3 +7,52 @@ h1{
     color: blue;
 }
 
+h2{
+    color: green;
+}
+
+h3{
+    color: red;
+}
+
+h4{
+    color: orange;
+}
+
+/* displayed question section */
+.wrapper{
+    border: 2px solid orange;
+}
+
+
+/*  ---------  buttons  ----------- */
+/* start button */
+#start{
+    background-color: blue;
+    font-size: 25px;
+    color: white;
+}
+
+/* play again button */
+#reset-game{
+color: white;
+background-color: blue;
+}
+
+.answer-button{
+    color: red;
+    background-color: white;
+
+}
+/*  ---------  buttons end  ----------- */
+
+
+/* question text */
+#questions{
+    color: blue;
+}
+
+/* time remaining text */
+#time-remaining{
+    color: blue;
+}
