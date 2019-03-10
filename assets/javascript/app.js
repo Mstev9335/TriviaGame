@@ -30,30 +30,41 @@ $(document).on('click', '#reset-game', function(e) {
 
 //   questions
 var questions = [{
-    question: "What color is the sky?",
-    choice: ["green", "blue", "yellow", "red"],
-    correctAnswer: "blue"
+    question: "Released on April 5, 1974, what was Stephen King’s first published novel?",
+    choice: ["Salem's Lot", "Carrie", "Christine", "The Shining"],
+    correctAnswer: "Carrie"
+
   }, {
-    question: "How many days are in the month of February?",
-    choice: ["thirty", "thirty-one", "twenty-nine", "twenty-eight"],
-    correctAnswer: "twenty-eight"
+    question: "Oliver Twist was the second novel published by which English author?",
+    choice: ["Charles Dickens", "William Shakespeare", "Oscar Wilde", "Edgar Allen Poe"],
+    correctAnswer: "Charles Dickens"
   }, {
-    question: "What is the largest planet in our solar system?",
-    choice: ["pluot", "saturn", "jupiter", "earth"],
-    correctAnswer: "jupiter"
+    question: "In what city would you find the Wizard of Oz?",
+    choice: ["Neverland", "Brooklyn", "Oz", "The Emerald City"],
+    correctAnswer: "The Emerald City"
   }, {
-    question: 'What is the tallest land mammal"?',
-    choice: ["giraffe", "elephant", "gorilla", "bear"],
-    correctAnswer: "giraffe"
+    question: 'Who wrote the American realist novel “The Grapes of Wrath”?',
+    choice: ["Mark Twain", "Harper Lee", "John Steinbeck", "F. Scott Fitzgerald"],
+    correctAnswer: "John Steinbeck"
   }, {
-    question: 'What country does King Arthur hail from?',
-    choice: ["France", "England", "Spain", "Rome"],
-    correctAnswer: "England"
+    question: 'The Hound of the Baskervilles is a crime novel featuring which fictional detective?',
+    choice: ["Sherlock Holmes", "James Bond", "Nancy Drew", "Batman"],
+    correctAnswer: "Sherlock Holmes"
   }, {
-    question: 'What does air primarily consist of?',
-     choice: ["Helium", "Oxygen", "Nitrogen", "Hydrogen"],
-    correctAnswer: "Nitrogen"
- 
+    question: 'The famous American writer Samuel Langhorne Clemens is better known by what pen name?',
+     choice: ["Stephen King", "Nathaniel Hawthorne", "Mark Twain", "Ray Bradbury"],
+    correctAnswer: "Mark Twain"
+  },
+  {
+    question: 'Which book holds the record of being the most stolen book from public libraries?',
+     choice: ["A Tale of Two Cities", "Romeo and Juliet", "To Kill A Mockingbird", "Guinness Book of World Records"],
+    correctAnswer: "Guinness Book of World Records"
+  },
+  {
+    question: '“Call me Ishmael” is the opening line from what novel?',
+     choice: ["The Lord of the Rings", "Don Quixote", "Moby Dick", "Alice’s Adventures in Wonderland"],
+    correctAnswer: "Moby Dick"
+
   }];
 
 
@@ -107,7 +118,7 @@ function nextQuestion(){
 function timeUp(){
     stopTimer();
     $('#counter-number').html(count);
-    panel.html('<h3>Time is up</h3>');
+    panel.html('<h3>Time is Up</h3>');
     panel.append('<h4>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h4>');
     
     if (currentQuestion === questions.length - 1){
@@ -121,7 +132,7 @@ function timeUp(){
 function answeredCorrectly(){
    stopTimer();
     correct++;
-    panel.html('<h2>Correct!</h2>');
+    panel.html('<h5>Correct</h5>');
     
     if (currentQuestion === questions.length - 1){
       setTimeout(results, 3000);
@@ -134,7 +145,7 @@ function answeredCorrectly(){
   function answeredIncorrectly() {
     stopTimer();
     incorrect++;
-    panel.html('<h3>incorrect</h3>');
+    panel.html('<h3>Incorrect</h3>');
     panel.append('<h4>The Correct Answer was: ' + questions[currentQuestion].correctAnswer + '</h4>');
     
     if (currentQuestion === questions.length - 1){
@@ -160,7 +171,6 @@ function clicked(e) {
     stopTimer();
     $('#counter-number').html(count);
     panel.html('<h2>Results:</h2>');
-    
     panel.append('<h3>Correct Answers: ' + correct + '</h3>');
     panel.append('<h3>Incorrect Answers: ' + incorrect + '</h3>');
     panel.append('<h3>Unanswered: ' + (questions.length - (incorrect + correct)) + '</h3>');

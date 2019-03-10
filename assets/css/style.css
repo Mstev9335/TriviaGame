@@ -1,28 +1,55 @@
 body{
-    background-color: beige;
+    background-image: url(../images/lit.jpg);
 }
 
 h1{
     font-size: 25px;
-    color: blue;
+    font-family:Georgia, serif;
+    color: black;
+    background-color:#E7DFDF;
+    height: 100px;
+    text-align: center;
+    line-height:100px;
+    font-size: 45px;
+    opacity: .85;
+    margin-bottom:25px;
+    margin-left:25%;
+    margin-right: 25%;
 }
 
 h2{
-    color: green;
+    font-family:Georgia, serif; 
+    color: blue;
 }
 
 h3{
     color: red;
+    font-size: 50px;
 }
 
 h4{
     color: orange;
+    font-size: 40px;
 }
+
+h5{
+    color:green;
+    font-size: 50px;
+}
+
 
 /* displayed question section */
 .wrapper{
-    border: 2px solid orange;
+    text-align: center;
+    border: 2px solid black;
+    background-color:#90F2F5;
+    opacity: .85;
+    height:550px;
+    margin-left:15%;
+    margin-right: 15%;
 }
+
+
 
 
 /*  ---------  buttons  ----------- */
@@ -31,17 +58,30 @@ h4{
     background-color: blue;
     font-size: 25px;
     color: white;
+    position: relative;
+    top: 185px;
+    line-height:65px;
+    border: 2px solid black;
+    opacity: 1;
 }
 
 /* play again button */
 #reset-game{
-color: white;
-background-color: blue;
+    background-color: blue;
+    font-size: 25px;
+    color: white;
+    position: relative;
+    line-height:65px;
+    border: 2px solid black;
+ 
 }
 
 .answer-button{
-    color: red;
-    background-color: white;
+    color: black;
+    background-color: #EFAF19;
+    font-size:25px;
+    margin:10px;
+    
 
 }
 /*  ---------  buttons end  ----------- */
@@ -50,6 +90,8 @@ background-color: blue;
 /* question text */
 #questions{
     color: blue;
+    position: relative;
+    top:85px;
 }
 
 /* time remaining text */
