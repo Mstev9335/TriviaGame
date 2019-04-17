@@ -5,3 +5,5 @@ Once the game has completed, the user is given the option to play the game again
 
 ## Technologies used:
 HTML, CSS, Javascript
+
+Deployed website: https://mstev9335.github.io/TriviaGame/
