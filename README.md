@@ -8,4 +8,8 @@ Once the game has completed, the user is given the option to play the game again
 * CSS
 * Javascript
 
+### App starts
+![start](/assets/images/trivia1.png)
+
+
 Deployed website: https://mstev9335.github.io/TriviaGame/
