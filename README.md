@@ -14,8 +14,11 @@ Once the game has completed, the user is given the option to play the game again
 ### Example question
 ![question](/assets/images/trivia2.png)
 
+### Question is marked correct/incorrect
+![correct](/assets/images/trivia3.png)
+
 ### Score screen
-![start](/assets/images/trivia4.png)
+![score](/assets/images/trivia4.png)
 
 
 Deployed website: https://mstev9335.github.io/TriviaGame/
