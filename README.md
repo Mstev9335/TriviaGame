@@ -11,5 +11,11 @@ Once the game has completed, the user is given the option to play the game again
 ### App starts
 ![start](/assets/images/trivia1.png)
 
+### Example question
+![question](/assets/images/trivia2.png)
+
+### Score screen
+![start](/assets/images/trivia4.png)
+
 
 Deployed website: https://mstev9335.github.io/TriviaGame/
